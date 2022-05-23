@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Score : MonoBehaviour
-{
-    [Range(1,100)]
-    [SerializeField] int lifePoints = 100;
-    
-    public void ReduceLife(int count)
+{    
+    [SerializeField] TextMeshProUGUI lifeRemaningText;
+    [SerializeField] TextMeshProUGUI energyRemaningText;
+    [SerializeField] MainBase mainBase;
+    [SerializeField] BaseBehaviour baseBehaviour;
+
+
+    public void Update()
     {
-        lifePoints += count;
-        Debug.Log("Life: " + lifePoints);
+        lifeRemaningText.text = "Life: " + mainBase.GetLifePoints();
+        energyRemaningText.text = "Energy: " + baseBehaviour.GetEnergyActual();
     }
+
+
 }
