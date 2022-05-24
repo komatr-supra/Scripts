@@ -7,13 +7,12 @@ public class Health : MonoBehaviour
 {
     [SerializeField] int health = 5;
     [SerializeField] GameObject prefabCreatedAfterDeath;
+    [SerializeField] GameObject hitEffect;
+    [SerializeField] GameObject changeEffect;
 
-    private void Awake()
-    {
-
-    }
     public void ReduceHealth(int amount)
     {
+        Instantiate(hitEffect,transform.position,Quaternion.identity);
         health = Mathf.Max(0, health - amount);
         if (health == 0) Die();
     }
@@ -21,10 +20,10 @@ public class Health : MonoBehaviour
     private void Die()
     {
         //create a skeleton, if this is a willager
-        if (CompareTag("Enemy"))
+        if (CompareTag("Enemy") && GetComponent<EnemyAI>().GetEnemyBase().GetComponent<BaseBehaviour>().ReduceEnergy())
         {
-            Debug.Log("CREATING PLAYERS UNIT");
             CreatePlayersUnit();
+            Instantiate(changeEffect, transform.position, Quaternion.identity);
         }
         //destroy
         Destroy(gameObject);

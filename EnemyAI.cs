@@ -107,6 +107,10 @@ public class EnemyAI : MonoBehaviour
         this.target = target;
         MoveToTarget();
     }
+    public GameObject GetEnemyBase()
+    {
+        return enemyBase;
+    }
     void Hit()
     {
         Health _enemy = target.GetComponent<Health>();

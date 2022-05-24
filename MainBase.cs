@@ -7,19 +7,20 @@ public class MainBase : MonoBehaviour
 {
     [Range(1, 100)]
     [SerializeField] int lifePoints = 100;
+    [SerializeField] GameObject effectHit;
     void Start()
     {
         
     }
     private void OnTriggerEnter(Collider other)
     {
-
         if (CompareTag(other.tag))
         {
             Debug.Log("same tag");
             return;
         }
-        ReduceLife(-other.gameObject.GetComponent<EnemyAI>().GetAttackPower());
+        ReduceLife(-1);//other.gameObject.GetComponent<EnemyAI>().GetAttackPower()
+        Instantiate(effectHit,transform.position, Quaternion.identity);
         Destroy(other.gameObject);
     }
     private void ReduceLife(int v)

@@ -11,6 +11,7 @@ public class BaseBehaviour : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float fireRate = 1f;
     [SerializeField] float energy = 2f;
+    [SerializeField] float energyRechargeModifierMultiplier = 0.5f;
     bool fireEnabled = true;
     float fireCountdown = 0;
     GameObject target;
@@ -22,7 +23,7 @@ public class BaseBehaviour : MonoBehaviour
 
     private void Update()
     {
-        energy += Time.deltaTime/4;
+        energy += Time.deltaTime*energyRechargeModifierMultiplier;
         if (fireCountdown > 0) fireCountdown -= Time.deltaTime;
         if(target == null || Vector3.Distance(target.transform.position,transform.position) > fireDistance)
         {
@@ -66,5 +67,11 @@ public class BaseBehaviour : MonoBehaviour
         }
         if (distance < fireDistance) target = nearTarget;
         else target = null;
+    }
+    public bool ReduceEnergy()
+    {
+        if (energy < 1) return false;
+        energy--;
+        return true;
     }
 }
