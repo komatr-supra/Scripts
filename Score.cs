@@ -13,7 +13,7 @@ public class Score : MonoBehaviour
     public void Update()
     {
         lifeRemaningText.text = "Life: " + mainBase.GetLifePoints();
-        energyRemaningText.text = "Energy: " + baseBehaviour.GetEnergyActual();
+        energyRemaningText.text = "Energy: " + Mathf.Floor(baseBehaviour.GetEnergyActual());
     }
 
 

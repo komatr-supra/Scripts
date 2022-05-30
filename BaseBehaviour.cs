@@ -31,10 +31,9 @@ public class BaseBehaviour : MonoBehaviour
         }
         else
         {
-            if (!fireEnabled || energy < 1 || fireCountdown > 0) return;
+            if (!fireEnabled || fireCountdown > 0) return;
             StopAllCoroutines();            
             fireCountdown = fireRate;
-            energy--;
             ShootAtEnemy();
         }
     }

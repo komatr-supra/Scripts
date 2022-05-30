@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     NavMeshAgent navMeshAgent;
     Animator animator;
     GameObject enemyBase;
-
+    [SerializeField] UnityEvent eventSound;
     
     private void Awake()
     {
@@ -58,6 +59,7 @@ public class EnemyAI : MonoBehaviour
         if (attackDelayCounter > 0) return;
         attackDelayCounter = attackDelay;
         animator.SetTrigger("attack");
+        eventSound.Invoke();
     }
 
     void NearEnemyChecking()
@@ -117,5 +119,6 @@ public class EnemyAI : MonoBehaviour
         if(_enemy != null) 
         _enemy.ReduceHealth(attackPower);
     }
+    
 }
 
