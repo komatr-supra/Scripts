@@ -13,22 +13,19 @@ public class PlayerControll : MonoBehaviour
     }
     void Update()
     {
-        //move left OR right
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W))
         {
             myCamera.transform.position = new Vector3(myCamera.transform.position.x, myCamera.transform.position.y, myCamera.transform.position.z + moveSpeedOfCamera * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.S))
         {
             myCamera.transform.position = new Vector3(myCamera.transform.position.x, myCamera.transform.position.y, myCamera.transform.position.z - moveSpeedOfCamera * Time.deltaTime);
         }
-
-        //move up OR down
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.D))
         {
             myCamera.transform.position = new Vector3(myCamera.transform.position.x + moveSpeedOfCamera * Time.deltaTime, myCamera.transform.position.y, myCamera.transform.position.z);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.A))
         {
             myCamera.transform.position = new Vector3(myCamera.transform.position.x - moveSpeedOfCamera * Time.deltaTime, myCamera.transform.position.y, myCamera.transform.position.z);
         }
